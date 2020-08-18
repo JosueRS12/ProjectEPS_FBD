@@ -1,4 +1,4 @@
-package Logica;
+    package Logica;
 
 import Conexion.Conexion;
 import java.sql.Date;

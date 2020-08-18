@@ -1,9 +1,17 @@
 
 package eps.Ventanas;
 
+import Logica.SolicitarCita;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class PedirCita extends javax.swing.JFrame {
+    private SolicitarCita sc;
     public PedirCita() {
         initComponents();
+        this.sc = new SolicitarCita();
         this.setTitle("EPS");
         this.setLocationRelativeTo(null);
     }
@@ -55,7 +63,7 @@ public class PedirCita extends javax.swing.JFrame {
         });
 
         desTipoCita.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        desTipoCita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prioritaria", "Primera Vez", "Lectura de Exámenes", "Control", " " }));
+        desTipoCita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "prioritaria", "primera vez", "lectura de exámenes", "control", " " }));
         desTipoCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 desTipoCitaActionPerformed(evt);
@@ -73,6 +81,11 @@ public class PedirCita extends javax.swing.JFrame {
 
         bSolicitarCita.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         bSolicitarCita.setText("Solicitar Cita");
+        bSolicitarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSolicitarCitaActionPerformed(evt);
+            }
+        });
 
         bVolver.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         bVolver.setText("Volver");
@@ -162,6 +175,31 @@ public class PedirCita extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_bVolverActionPerformed
+
+    private void bSolicitarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSolicitarCitaActionPerformed
+                    //primero se debe verificar la existencia del paciente.
+            //verificar que hayan citas de ese tipo y activas en la agenda
+            //de ser true las dos verificaciones se debe cambiar el estado de la cita a Inactiva.
+        boolean verPac = sc.verificarPaciente(Integer.parseInt(Id.getText()));
+        boolean verCita = sc.verificarCita(desTipoCita.getSelectedItem().toString());
+        try{
+            if(verPac == true && verCita == true){
+                JOptionPane.showMessageDialog(this," Existen Citas Activas");
+                JOptionPane.showMessageDialog(this," *Mostrar tabla con las citas en especifico");
+                
+            }
+            else if(verPac == false)
+                JOptionPane.showMessageDialog(this," El usuario no existe");
+            else if(verCita == false)
+                JOptionPane.showMessageDialog(this," No hay citas activas de ese tipo");
+
+        } catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "ERROR El campo solo recibe digitos de tipo enteros: "+e.getMessage());
+        }   
+            
+            
+            
+    }//GEN-LAST:event_bSolicitarCitaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Id;

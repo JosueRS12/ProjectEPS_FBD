@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Clases%20Universidad/Fundamentos%20Bases%20de%20Datos/Proyecto/EPS/src/eps/Ventanas/RegistrarPaciente.java</file>
+            <file>file:/D:/Clases%20Universidad/Fundamentos%20Bases%20de%20Datos/Proyecto/EPS/src/Conexion/Conexion.java</file>
+            <file>file:/D:/Clases%20Universidad/Fundamentos%20Bases%20de%20Datos/Proyecto/EPS/src/Logica/DataPaciente.java</file>
+            <file>file:/D:/Clases%20Universidad/Fundamentos%20Bases%20de%20Datos/Proyecto/EPS/src/eps/EPS.java</file>
+            <file>file:/D:/Clases%20Universidad/Fundamentos%20Bases%20de%20Datos/Proyecto/EPS/src/eps/Ventanas/PedirCita.java</file>
+            <file>file:/D:/Clases%20Universidad/Fundamentos%20Bases%20de%20Datos/Proyecto/EPS/src/Logica/SolicitarCita.java</file>
+        </group>
     </open-files>
 </project-private>
