@@ -1,13 +1,13 @@
 package eps.Ventanas;
 
 import Logica.DataPaciente;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import java.util.Random;
 public class RegistrarPaciente extends javax.swing.JFrame {
     
-    private DataPaciente dp;
+    private DataPaciente dp;   
     
     public RegistrarPaciente() {
         initComponents();
@@ -62,6 +62,10 @@ public class RegistrarPaciente extends javax.swing.JFrame {
         desTipoAfiliacion = new javax.swing.JComboBox<>();
         bEnviar = new javax.swing.JButton();
         bVolver = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        tIdAfiliado = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        desTipoDocumentoAfiliado = new javax.swing.JComboBox<>();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -417,6 +421,11 @@ public class RegistrarPaciente extends javax.swing.JFrame {
 
         desTipoAfiliacion.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         desTipoAfiliacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Afiliado", "Beneficiario" }));
+        desTipoAfiliacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desTipoAfiliacionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -455,31 +464,57 @@ public class RegistrarPaciente extends javax.swing.JFrame {
             }
         });
 
+        jLabel13.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel13.setText("Id del afiliado cotizante");
+
+        jLabel15.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel15.setText("Tipo Id del afiliado cotizante");
+
+        desTipoDocumentoAfiliado.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        desTipoDocumentoAfiliado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "CE", "TI" }));
+        desTipoDocumentoAfiliado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desTipoDocumentoAfiliadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(bEnviar)
-                        .addGap(58, 58, 58)
-                        .addComponent(bVolver))
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(tIdAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(35, 35, 35)
+                            .addComponent(bEnviar)
+                            .addGap(39, 39, 39)
+                            .addComponent(bVolver)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(desTipoDocumentoAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(262, 262, 262))
         );
         jPanel2Layout.setVerticalGroup(
@@ -503,18 +538,26 @@ public class RegistrarPaciente extends javax.swing.JFrame {
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bEnviar)
-                            .addComponent(bVolver)))
+                            .addComponent(jLabel15)
+                            .addComponent(desTipoDocumentoAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(tIdAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bEnviar)
+                    .addComponent(bVolver))
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -582,9 +625,35 @@ public class RegistrarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_bVolverActionPerformed
 
     private void bEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEnviarActionPerformed
+        Random r = new Random();
         int count = 0;      
         int idPaciente = Integer.parseInt(tId.getText()); 
+        String tipoDoc = desTipoDocumento.getSelectedItem().toString();
+        int idEps = r.nextInt(1000000);
+        int hEps = r.nextInt(99);
+        int idCategoria = r.nextInt(1000000);
+        String tipoAfiliacion = desTipoAfiliacion.getSelectedItem().toString();
+        
         if(count==0){
+            //Insertar datod de eps           
+            count= dp.insertarEps(idEps, hEps);            
+            //Insertar datos de la tabla Categoria              
+            Long precio;
+            switch (desCategoria.getSelectedItem().toString()){
+                case "A":
+                    precio = Long.parseLong("3400",10);
+                    break;
+                case "B":
+                    precio = Long.parseLong("13500",10);
+                    break;
+                case "C":
+                    precio = Long.parseLong("35600",10);
+                    break;
+                default:
+                    precio = null;
+                    break;
+            }                    
+            count+=dp.insertarCat(idCategoria, BigDecimal.valueOf(precio).abs(), desCategoria.getSelectedItem().toString());           
             // Insertar datos de la tabla usuario
             // obtener fecha, con la libreria JCalendar
             Date date = jCFNacimiento.getDate();
@@ -596,47 +665,44 @@ public class RegistrarPaciente extends javax.swing.JFrame {
                 sexo = cF.getText();
             else
                 sexo = cM.getText();              
-            count = dp.insertarUs(idPaciente, sexo, tNombre.getText(), tApellido.getText(), tCorreo.getText(), desTipoDocumento.getSelectedItem().toString(), fecha); 
-            //insertar datos de la tabla paciente
-            Random r = new Random();
-            int idCategoria = r.nextInt(1000000);
-            count+=dp.insertarPac("A", desTipoAfiliacion.getSelectedItem().toString(), idPaciente, idCategoria);
-            //Insertar datos de la tabla Categoria                 
-            int precio;
-            switch (desCategoria.getSelectedItem().toString()){
-                case "A":
-                    precio = 3400;
-                    break;
-                case "B":
-                    precio = 13500;
-                    break;
-                case "C":
-                    precio = 35600;
-                    break;
-                default:
-                    precio = 0;
-                    break;
-            }                    
-            count+=dp.insertarCat(idCategoria, precio, desCategoria.getSelectedItem().toString(), idPaciente);
+            count+= dp.insertarUs(idPaciente, sexo, tNombre.getText(), tApellido.getText(), tCorreo.getText(), tipoDoc, fecha,  idEps); 
+            //insertar datos de la tabla paciente    
+            if(tipoAfiliacion.equals("Beneficiario")){
+                count+=dp.insertarPac("A", tipoAfiliacion, idPaciente, idCategoria, tipoDoc, Integer.parseInt(tIdAfiliado.getText()),desTipoDocumentoAfiliado.getSelectedItem().toString());
+            } else if(tipoAfiliacion.equals("Afiliado")){
+                count+=dp.insertarPac("A", tipoAfiliacion, idPaciente, idCategoria, tipoDoc, 0,null);
+            } else{
+                count+=0;
+            }        
             //insertar datos de la tabla telefono
             try{
-                count+=dp.insertarTel(idPaciente, Long.parseLong(tContacto.getText(), 10), Long.parseLong(tCelular.getText(), 10));
+                count+=dp.insertarTel(idPaciente, Long.parseLong(tContacto.getText(), 10), tipoDoc);
+                count+=dp.insertarTel(idPaciente, Long.parseLong(tCelular.getText(), 10), tipoDoc);
             } catch (NumberFormatException e){
                 JOptionPane.showMessageDialog(null, "ERROR El campo solo recibe digitos de tipo enteros: "+e.getMessage());
             }                     
             
         }    
-        if(count == 4)
+        if(count == 6)
             JOptionPane.showMessageDialog(this, "Registro exitoso");
         else{
             JOptionPane.showMessageDialog(this, "No se pudo registrar el paciente");
-            dp.DeleteData("telefonousuario", idPaciente);
-            dp.DeleteData("categoria", idPaciente);
-            dp.DeleteData("paciente", idPaciente);
-            dp.DeleteData("usuario", idPaciente);
+            dp.DeleteData("telefonousuario", idPaciente,tipoDoc,1);
+            dp.DeleteData(null, idCategoria,null,2);
+            dp.DeleteData("paciente", idPaciente,tipoDoc,1);
+            dp.DeleteData("usuario", idPaciente,tipoDoc,1);
+            dp.DeleteData(null, idEps, null, 3);
         }
         
     }//GEN-LAST:event_bEnviarActionPerformed
+
+    private void desTipoDocumentoAfiliadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desTipoDocumentoAfiliadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_desTipoDocumentoAfiliadoActionPerformed
+
+    private void desTipoAfiliacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desTipoAfiliacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_desTipoAfiliacionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -647,11 +713,14 @@ public class RegistrarPaciente extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> desCategoria;
     private javax.swing.JComboBox<String> desTipoAfiliacion;
     private javax.swing.JComboBox<String> desTipoDocumento;
+    private javax.swing.JComboBox<String> desTipoDocumentoAfiliado;
     private com.toedter.calendar.JDateChooser jCFNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -680,6 +749,7 @@ public class RegistrarPaciente extends javax.swing.JFrame {
     private javax.swing.JTextField tContacto;
     private javax.swing.JTextField tCorreo;
     private javax.swing.JTextField tId;
+    private javax.swing.JTextField tIdAfiliado;
     private javax.swing.JTextField tNombre;
     // End of variables declaration//GEN-END:variables
 }

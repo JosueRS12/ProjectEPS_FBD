@@ -3,9 +3,6 @@ package Logica;
 import Conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
-
 public class SolicitarCita {  
     private PreparedStatement ps;
     private final Conexion cn;
@@ -19,9 +16,9 @@ public class SolicitarCita {
         this.cn = new Conexion();
     }    
     
-    public boolean verificarPaciente(int idPaciente) {        
+    public boolean verificarPaciente(int idPaciente, String tipoDocumento) {        
         boolean res = false;       
-        String verificar = "SELECT k_numdocumento FROM paciente WHERE k_numdocumento = "+idPaciente;
+        String verificar = "SELECT k_numdocumento FROM paciente WHERE k_numdocumento = "+idPaciente+" AND i_tipodocumento = '"+tipoDocumento+"'";
         try{
             ps = cn.conectar().prepareStatement(verificar);            
             rs = ps.executeQuery();        
@@ -43,7 +40,7 @@ public class SolicitarCita {
     //el paso siguiente es mostrar la tabla con las citas en especifico
     public boolean verificarCita (String nCita) {        
         boolean res = false;       
-        String verificar = "SELECT k_numerocita FROM citavf WHERE i_ncita = "+"'"+nCita+"'"+" AND i_estado = 'A'";
+        String verificar = "SELECT k_numerocita FROM cita WHERE i_tipocita = "+"'"+nCita+"'"+" AND i_estado = 'A'";
         try{
             ps = cn.conectar().prepareStatement(verificar);            
             rs = ps.executeQuery();        
@@ -61,7 +58,7 @@ public class SolicitarCita {
     }
     
     public int guardarCita(){
-        String modificar = "UPDATE citavf SET i_estado = 'I' WHERE i_ncita = id_de_la_cita";
+        String modificar = "UPDATE citavf SET i_estado = 'I' WHERE i_tipocita = id_de_la_cita";
         return 0;
     }
     

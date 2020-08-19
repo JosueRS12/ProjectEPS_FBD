@@ -9,7 +9,7 @@ public class Conexion {
     //JDBC Driver y url de la base de datos
     private Connection conexion;
     final String JDBC_DRIVER = "org.postgresql.Driver";
-    final String DB_URL = "jdbc:postgresql://localhost:5432/EpsTest";
+    final String DB_URL = "jdbc:postgresql://localhost:5432/EpsFinal";
     final String USER = "postgres";
     final String PASS = "1193098162";
     

@@ -180,7 +180,7 @@ public class PedirCita extends javax.swing.JFrame {
                     //primero se debe verificar la existencia del paciente.
             //verificar que hayan citas de ese tipo y activas en la agenda
             //de ser true las dos verificaciones se debe cambiar el estado de la cita a Inactiva.
-        boolean verPac = sc.verificarPaciente(Integer.parseInt(Id.getText()));
+        boolean verPac = sc.verificarPaciente(Integer.parseInt(Id.getText()), desTipoDoc.getSelectedItem().toString());
         boolean verCita = sc.verificarCita(desTipoCita.getSelectedItem().toString());
         try{
             if(verPac == true && verCita == true){
